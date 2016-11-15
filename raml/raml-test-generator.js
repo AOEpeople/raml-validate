@@ -22,7 +22,7 @@ var RamlTestGenerator = null;
             throw new Error('serverUri is not set. Please provide a valid serverUri.');
         }
 
-        this.api = parser.loadRAMLSync(this.ramlFile);
+        this.api = parser.loadRAMLSync(path.resolve(this.ramlFile));
     };
 
     RamlTestGenerator.prototype.getAllTests = function(config) {
