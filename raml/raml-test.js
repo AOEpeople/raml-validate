@@ -1,5 +1,5 @@
 var request     = require('request');
-var expect      = require('Chai').expect;
+var expect      = require('chai').expect;
 var Mocha       = require('mocha');
 
 var RamlTest = null;
