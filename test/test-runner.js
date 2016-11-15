@@ -11,7 +11,11 @@ var TestRunner = null;
      */
     TestRunner = function () {
         this.mochaInstance = new Mocha({
-            'timeout': 5000
+            'timeout': 5000,
+            reporter: 'mocha-junit-reporter',
+            reporterOptions: {
+                mochaFile: './report.xml'
+            }
         });
         this.suiteInstance = Mocha.Suite.create(this.mochaInstance.suite, 'Test Suite');
     };
@@ -29,7 +33,6 @@ var TestRunner = null;
      */
     TestRunner.prototype.runTests = function() {
         this.mochaInstance.addFile(__filename);
-
         this.mochaInstance.run(function(failures){
             process.on('exit', function () {
                 process.exit(failures);
