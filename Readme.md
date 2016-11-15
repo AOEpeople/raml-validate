@@ -16,10 +16,6 @@ $ npm install -g raml-validate
 
 ## License
 
-Copyright (c) 2016 Roland Beisel
+Copyright (c) 2016 AOE GmbH
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
-
-## Acknowledgments
-
-Built using [generator-commader](https://github.com/Hypercubed/generator-commander).
