@@ -1,0 +1,30 @@
+[
+  {
+    "uri": "/products/{productIds}",
+    "filename": "aax.raml",
+    "placeholder": {
+      "{productIds}": "174"
+    }
+  },
+  {
+    "uri": "/products/{productId}",
+    "filename": "mule.raml",
+    "placeholder": {
+      "{productId}": "174"
+    }
+  },
+  {
+    "uri": "/products/{productId}/simple",
+    "filename": "mule.raml",
+    "placeholder": {
+      "{productId}": "174"
+    }
+  },
+  {
+    "uri": "/prices/product/{productId}",
+    "filename": "mule.raml",
+    "placeholder": {
+      "{productId}": "174"
+    }
+  }
+]

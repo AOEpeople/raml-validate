@@ -1,0 +1,35 @@
+{
+  "name": "raml-validate",
+  "version": "0.0.1",
+  "description": "API testing against RAML files",
+  "private": true,
+  "bin": {
+    "raml-validate": "./bin/raml-validate"
+  },
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "author": {
+    "name": "Roland Beisel",
+    "email": "roland.beisel@aoe.com",
+    "url": "https://github.com/rolandbeisel"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rolandbeisel/raml-validate"
+  },
+  "license": "MIT",
+  "bugs": "https://github.com/rolandbeisel/raml-validate/issues",
+  "dependencies": {
+    "autocmdr": "~0.0.7",
+    "commander": "~2.0.0",
+    "fs": "0.0.2",
+    "path": "^0.12.7",
+    "raml-1-parser": "^1.1.8",
+    "request": "^2.78.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.1.2"
+  }
+}
