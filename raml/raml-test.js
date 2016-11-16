@@ -46,31 +46,38 @@ require('mocha');
         var ramlTestScope = this;
 
         return new Mocha.Test(ramlTestScope.name, function() {
-            describe(ramlTestScope.name, function() {
+            var response = null;
 
-                it('should return response code ' + ramlTestScope.response.status, function (done) {
+            describe(ramlTestScope.name, function () {
+                before(function(done) {
                     request.get(ramlTestScope.request.uri, function (err, res, body) {
-                        expect(parseInt(res.statusCode)).to.equal(parseInt(ramlTestScope.response.status));
+                        response = {
+                            err: err,
+                            res: res,
+                            body: body
+                        };
                         done();
                     });
+                });
+
+                it('should return response code ' + ramlTestScope.response.status, function (done) {
+                    expect(parseInt(response.res.statusCode)).to.equal(parseInt(ramlTestScope.response.status));
+                    done();
                 });
 
                 it('should return response header ' + ramlTestScope.response.body.name(), function (done) {
-                    request.get(ramlTestScope.request.uri, function (err, res, body) {
-                        expect(res.headers['content-type']).to.have.string(ramlTestScope.response.body.name());
-                        done();
-                    });
+                    expect(response.res.headers['content-type']).to.have.string(ramlTestScope.response.body.name());
+                    done();
                 });
 
                 it('should return correct response body (' + ramlTestScope.response.body.type() + ')', function (done) {
-                    request.get(ramlTestScope.request.uri, function (err, res, body) {
-                        var validationResult = ramlTestScope.response.body.validateInstance(JSON.parse(body));
-                        if (validationResult.length === 0) {
-                            done();
-                        } else {
-                            done(validationResult);
-                        }
-                    });
+                    var validationResult = ramlTestScope.response.body.validateInstance(JSON.parse(response.body));
+
+                    if (validationResult.length === 0) {
+                        done();
+                    } else {
+                        done(validationResult);
+                    }
                 });
 
             });

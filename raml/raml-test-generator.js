@@ -41,8 +41,6 @@ var RamlTestGenerator = null;
                     if (placeHolderValue !== null) {
                         relativeUri = relativeUri.replace(placeholder, placeHolderValue)
                     }
-
-                    console.log(relativeUri);
                 });
             }
 
