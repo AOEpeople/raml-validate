@@ -27,15 +27,12 @@ require('mocha');
         this.request = {
             uri: options.request.uri || '',
             method: options.request.method || '',
-            params: options.request.params || {},
-            query: options.request.query || {},
             body: options.request.body || ''
         };
 
         this.response = {
             status: options.response.status || '',
-            type: options.response.type || '',
-            body: options.response.body || ''
+            body: options.response.body
         };
     };
 
@@ -43,14 +40,14 @@ require('mocha');
      * Runs all tests
      */
     RamlTest.prototype.getTest = function() {
-        var ramlTestScope = this;
+        var self = this;
 
-        return new Mocha.Test(ramlTestScope.name, function() {
+        return new Mocha.Test(self.name, function() {
             var response = null;
 
-            describe(ramlTestScope.name, function () {
+            describe(self.name, function () {
                 before(function(done) {
-                    request.get(ramlTestScope.request.uri, function (err, res, body) {
+                    request.get(self.request.uri, function (err, res, body) {
                         response = {
                             err: err,
                             res: res,
@@ -60,18 +57,18 @@ require('mocha');
                     });
                 });
 
-                it('should return response code ' + ramlTestScope.response.status, function (done) {
-                    expect(parseInt(response.res.statusCode)).to.equal(parseInt(ramlTestScope.response.status));
+                it('should return response code ' + self.response.status, function (done) {
+                    expect(parseInt(response.res.statusCode)).to.equal(parseInt(self.response.status));
                     done();
                 });
 
-                it('should return response header ' + ramlTestScope.response.body.name(), function (done) {
-                    expect(response.res.headers['content-type']).to.have.string(ramlTestScope.response.body.name());
+                it('should return response header ' + self.response.body.name(), function (done) {
+                    expect(response.res.headers['content-type']).to.have.string(self.response.body.name());
                     done();
                 });
 
-                it('should return correct response body (' + ramlTestScope.response.body.type() + ')', function (done) {
-                    var validationResult = ramlTestScope.response.body.validateInstance(JSON.parse(response.body));
+                it('should return correct response body (' + (self.response.body.type() || 'not defined') + ')', function (done) {
+                    var validationResult = self.response.body.validateInstanceWithDetailedStatuses(JSON.parse(response.body));
 
                     if (validationResult.length === 0) {
                         done();

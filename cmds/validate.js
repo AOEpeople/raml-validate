@@ -3,26 +3,16 @@
  */
 'use strict';
 
-var testGenerator 		= require('../raml/raml-test-generator');
-var testConfiguration   = require('../raml/raml-configuration');
-var testRunner      	= require('../test/test-runner');
+var TestRunner = require('../raml/raml-test-runner');
 
 module.exports = function(program) {
 
 	program
-		.command('validate <ramlfile> <server>')
+		.command('validate <ramlfile> <server> <configurationfile>')
 		.version('0.0.1')
 		.description('validates RAML file against API')
-		.action(function (ramlfile, server) {
-			var generator = new testGenerator(ramlfile, server);
-            var runner = new testRunner();
-
-			var config = new testConfiguration(__dirname + '/config.json');
-
-			generator.getAllTests(config).forEach(function(test) {
-                runner.addTest(test);
-			});
-
-            runner.runTests();
+		.action(function (ramlfile, server, configurationfile) {
+			var testRunner = new TestRunner(configurationfile, ramlfile, server);
+			testRunner.run();
 		});
 };
