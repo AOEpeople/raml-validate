@@ -12,7 +12,11 @@ To install aoe-raml-validate from npm, run:
 $ npm install -g aoe-raml-validate
 ```
 
-```node ./bin/aoe-raml-validate --help```
+If you installed it globally, you should be able to run:
+
+```
+aoe-raml-validate --help
+```
 
 ## Getting started
 
