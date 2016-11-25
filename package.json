@@ -1,10 +1,10 @@
 {
   "name": "aoe-raml-validate",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "API testing against RAML files",
   "private": false,
   "bin": {
-    "raml-validate": "./bin/aoe-raml-validate"
+    "aoe-raml-validate": "./bin/aoe-raml-validate"
   },
   "scripts": {
     "test": "mocha -R spec"
