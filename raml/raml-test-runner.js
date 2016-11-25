@@ -13,18 +13,20 @@ var RamlTestRunner = null;
      * @param server
      * @constructor
      */
-    RamlTestRunner = function (testConfigurationFile, ramlFile, server) {
+    RamlTestRunner = function (testConfigurationFile, ramlFile, server, reportFile) {
         this.server = server;
 
         this.testConfig = JSON.parse(Filesystem.readFileSync(testConfigurationFile, 'utf8'));
 
         this.mochaInstance = new Mocha({
-            'timeout': 5000,
-            reporter: 'mocha-junit-reporter',
-            reporterOptions: {
-                mochaFile: './report.xml'
-            }
+            'timeout': 5000
         });
+
+        if (reportFile) {
+            this.mochaInstance.reporter('mocha-junit-reporter', {
+                mochaFile: './' + reportFile
+            });
+        }
 
         this.suiteInstance = Mocha.Suite.create(this.mochaInstance.suite, 'Test Suite');
 

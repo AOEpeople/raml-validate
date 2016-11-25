@@ -7,12 +7,12 @@ var TestRunner = require('../raml/raml-test-runner');
 
 module.exports = function(program) {
 
-	program
-		.command('validate <ramlfile> <server> <configurationfile>')
-		.version('0.0.1')
-		.description('validates RAML file against API')
-		.action(function (ramlfile, server, configurationfile) {
-			var testRunner = new TestRunner(configurationfile, ramlfile, server);
-			testRunner.run();
-		});
+    program
+        .command('validate <ramlfile> <server> <configurationfile>')
+        .description('validates RAML file against API')
+        .option("-o, --output [file]", "outputs a report file")
+        .action(function (ramlfile, server, configurationfile, options) {
+            var testRunner = new TestRunner(configurationfile, ramlfile, server, options.output);
+            testRunner.run();
+        });
 };
