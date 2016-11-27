@@ -1,6 +1,6 @@
 {
   "name": "aoe-raml-validate",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "API testing against RAML files",
   "private": false,
   "bin": {
