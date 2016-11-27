@@ -55,7 +55,7 @@ Each item in the config array represents one test case.
 
 - `name` - Name of the test case
 - `resource` - Resource defined in RAML file (has to match exactly)
-- `request` - Request to be executed - here you can define parameters and placeholders
+- `request` - Request to be executed - here you can replace parameters and placeholders
   * `path` - URI path
   * `method` - HTTP method
   * `body` - Request body
