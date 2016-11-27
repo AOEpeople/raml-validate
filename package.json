@@ -1,6 +1,6 @@
 {
   "name": "aoe-raml-validate",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "API testing against RAML files",
   "private": false,
   "bin": {
@@ -16,10 +16,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rolandbeisel/raml-validate"
+    "url": "https://github.com/AOEpeople/raml-validate/"
   },
   "license": "MIT",
-  "bugs": "https://github.com/rolandbeisel/raml-validate/issues",
+  "bugs": "https://github.com/AOEpeople/raml-validate/issues",
   "dependencies": {
     "autocmdr": "~0.0.7",
     "commander": "~2.0.0",
