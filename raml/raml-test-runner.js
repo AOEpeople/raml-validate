@@ -45,6 +45,11 @@ var RamlTestRunner = null;
                 configItem.request.method,
                 configItem.response.status
             );
+
+            if (responseType === false) {
+                throw "Response Type for resource " + configItem.resource + " not found. Please check you validation config.";
+            }
+
             var testCase = new RamlTest(configItem.name, {
                 request: {
                     uri: this.server + configItem.request.path,

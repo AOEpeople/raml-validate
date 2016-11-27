@@ -64,7 +64,7 @@ var RamlInformation = null;
 
             });
 
-        if (typeObject.length === 1) {
+        if (typeObject !== undefined && typeObject.length === 1) {
 
             return typeObject[0].body()[0];
 
