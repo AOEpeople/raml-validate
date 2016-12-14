@@ -27,7 +27,8 @@ require('mocha');
         this.request = {
             uri: options.request.uri || '',
             method: options.request.method || '',
-            body: options.request.body || ''
+            body: options.request.body || '',
+            contentType: options.request.contentType || ''
         };
 
         this.response = {
@@ -44,10 +45,25 @@ require('mocha');
 
         return new Mocha.Test(self.name, function() {
             var response = null;
-
             describe(self.name, function () {
                 before(function(done) {
-                    request.get(self.request.uri, function (err, res, body) {
+                    var requestConfig = {};
+                    if (self.request.method === "post" || self.request.method === "put"){
+                        requestConfig = {
+                            url: self.request.uri, //URL to hit
+                            method: self.request.method, //Specify the method
+                            headers: {
+                                'Content-Type': self.request.contentType
+                            },
+                            body: JSON.stringify(self.request.body)
+                        }
+                    } else {
+                        requestConfig = {
+                            url: self.request.uri, //URL to hit
+                            method: self.request.method //Specify the method
+                        }
+                    }
+                    request(requestConfig, function (err, res, body) {
                         response = {
                             err: err,
                             res: res,

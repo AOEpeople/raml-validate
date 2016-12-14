@@ -50,10 +50,17 @@ var RamlTestRunner = null;
                 throw "Response Type for resource " + configItem.resource + " not found. Please check you validation config.";
             }
 
+            var requestContentType = this.ramlInformation.getContentTypeForPostEndpoint(
+                configItem.resource
+            );
+
+
             var testCase = new RamlTest(configItem.name, {
                 request: {
                     uri: this.server + configItem.request.path,
-                    method: configItem.request.method
+                    method: configItem.request.method,
+                    body: configItem.request.body,
+                    contentType: requestContentType
                 },
                 response: {
                     status: configItem.response.status,

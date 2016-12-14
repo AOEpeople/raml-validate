@@ -73,7 +73,60 @@ var RamlInformation = null;
             return false;
 
         }
-    }
+    };
+
+    /**
+     * This method returns the contentType of the request for the endpoint
+     * @param endpointUri
+     * @returns {null}
+     */
+    RamlInformation.prototype.getContentTypeForPostEndpoint = function (endpointUri) {
+
+        var typeObject;
+        var method = "post";
+
+        this.api
+
+            .allResources()
+
+            .filter(function (resource) {
+                return resource.completeRelativeUri() === endpointUri;
+            })
+
+            .some(function (resource) {
+
+                return resource
+
+                    .methods()
+
+                    .filter(function (resourceMethod) {
+
+                        return resourceMethod.method() === method;
+                    })
+
+                    .some(function (resourceMethods) {
+
+                        typeObject = resourceMethods
+
+                            .body()
+
+                            .filter(function (body) {
+                                return body.name().toString() !== undefined;
+                            })
+                    })
+
+            });
+
+        if (typeObject !== undefined && typeObject.length === 1) {
+
+            return typeObject[0].name();
+
+        } else {
+
+            return false;
+
+        }
+    };
 })();
 
 module.exports = RamlInformation;
