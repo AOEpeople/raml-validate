@@ -60,6 +60,7 @@ var RamlTestRunner = null;
                     uri: this.server + configItem.request.path,
                     method: configItem.request.method,
                     body: configItem.request.body,
+                    cookie: configItem.request.cookie,
                     contentType: requestContentType
                 },
                 response: {

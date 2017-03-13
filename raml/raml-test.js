@@ -28,7 +28,8 @@ require('mocha');
             uri: options.request.uri || '',
             method: options.request.method || '',
             body: options.request.body || '',
-            contentType: options.request.contentType || ''
+            contentType: options.request.contentType || '',
+            cookie: options.request.cookie || ''
         };
 
         this.response = {
@@ -53,13 +54,17 @@ require('mocha');
                             url: self.request.uri, //URL to hit
                             method: self.request.method, //Specify the method
                             headers: {
-                                'Content-Type': self.request.contentType
+                                'Content-Type': self.request.contentType,
+                                'Cookie': self.request.cookie
                             },
                             body: JSON.stringify(self.request.body)
                         }
                     } else {
                         requestConfig = {
                             url: self.request.uri, //URL to hit
+                            headers: {
+                                'Cookie': self.request.cookie
+                            },
                             method: self.request.method //Specify the method
                         }
                     }

@@ -32,7 +32,8 @@ Each item in the config array represents one test case.
     "request": {
       "path": "/products",
       "method": "get",
-      "body": ""
+      "body": "",
+      "cookie": "myCookie=HelloWorld"
     },
     "response": {
       "status": 200
@@ -59,6 +60,7 @@ Each item in the config array represents one test case.
   * `path` - URI path
   * `method` - HTTP method
   * `body` - Request body
+  * `cookie` - Optional cookie string
 - `response` - Expected response
   * `status` - Expected Response code
 
